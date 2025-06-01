@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Lens Dance: Horse Photography</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f5ed;
+            color: #333;
+        }
+        header {
+            background-color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        .logo {
+            height: 60px;
+            margin-right: 15px;
+        }
+        .site-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            color: #6a402a;
+            text-decoration: none;
+        }
+        nav {
+            background-color: #5b4232;
+            overflow: hidden;
+            text-align: center;
+        }
+        nav a {
+            display: inline-block;
+            color: white;
+            text-align: center;
+            padding: 14px 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        nav a:hover {
+            background-color: #8c705e;
+        }
+        .container {
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            color: #6a402a;
+            margin-bottom: 20px;
+        }
+        .contact-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .contact-form-container {
+            flex: 2;
+            min-width: 300px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: left;
+        }
+        .contact-info {
+            flex: 1;
+            min-width: 250px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: left;
+        }
+        .contact-info p {
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        .contact-info a {
+            color: #6a402a;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .contact-info a:hover {
+            color: #8c705e;
+            text-decoration: underline;
+        }
+        .contact-form-container label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #5b4232;
+        }
+        .contact-form-container input[type="text"],
+        .contact-form-container input[type="email"],
+        .contact-form-container textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #dcdcdc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+        .contact-form-container textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        .contact-form-container button {
+            background-color: #6a402a;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .contact-form-container button:hover {
+            background-color: #8c705e;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="logo.png" alt="Lens Dance Logo" class="logo">
+            <a href="index.html" class="site-title">Lens Dance</a>
+        </div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About Me</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="contact.html">Contact Us</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1 class="section-title">Get in Touch with Lens Dance</h1>
+        <p>I'd love to hear from you! Whether you have a project in mind, a question about my photography, or just want to chat about horses, feel free to reach out.</p>
+        <div class="contact-content">
+            <div class="contact-form-container">
+                <form action="#" method="POST">
+                    <label for="name">Your Name:</label>
+                    <input type="text" id="name" name="name" required>
+
+                    <label for="email">Your Email:</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="message">Your Message:</label>
+                    <textarea id="message" name="message" required></textarea>
+
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+            <div class="contact-info">
+                <h3>Direct Contact</h3>
+                <p><strong>Email:</strong> <a href="mailto:info@lensdance.com">info@lensdance.com</a></p>
+                <p><strong>Phone:</strong> +972 5X-XXX-XXXX (Replace with your actual number)</p>
+                <p>
+                    I aim to respond to all inquiries within 24-48 hours.
+                </p>
+                <h3>Follow My Journey</h3>
+                <p>Connect with me on social media for daily dose of equine beauty:</p>
+                <p>
+                    <a href="https://www.instagram.com/your_instagram_handle" target="_blank">Instagram</a> |
+                    <a href="https://www.facebook.com/your_facebook_page" target="_blank">Facebook</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Lens Dance. All rights reserved.</p>
+    </footer>
+</body>
+</html>

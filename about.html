@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - Lens Dance: Horse Photography</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f5ed; /* Soft, natural background */
+            color: #333;
+            /* --- Sticky Footer CSS --- */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Make body at least viewport height */
+            /* --- End Sticky Footer CSS --- */
+        }
+        header {
+            background-color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        .logo {
+            height: 60px; /* Adjust as needed */
+            margin-right: 15px;
+        }
+        .site-title {
+            font-family: 'Playfair Display', serif; /* A stylish font for the title */
+            font-size: 2.5em;
+            color: #6a402a; /* Earthy tone */
+            text-decoration: none;
+            white-space: nowrap; /* Prevents wrapping on smaller screens */
+        }
+        nav {
+            background-color: #5b4232; /* Darker earthy tone */
+            overflow: hidden;
+            text-align: center;
+            flex-grow: 1; /* Allows nav to take available space */
+        }
+        nav a {
+            display: inline-block; /* For horizontal centering */
+            color: white;
+            text-align: center;
+            padding: 14px 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        nav a:hover {
+            background-color: #8c705e; /* Lighter hover */
+        }
+
+        /* General Container and Titles */
+        .container {
+            padding: 60px 20px; /* More padding for sections */
+            max-width: 900px; /* Adjusted for about page content */
+            margin: 0 auto;
+            text-align: center;
+            /* --- Sticky Footer CSS --- */
+            flex-grow: 1; /* Allows this content to expand and push footer down */
+            /* --- End Sticky Footer CSS --- */
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3em; /* Slightly larger titles */
+            color: #6a402a;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: #8c705e;
+            border-radius: 2px;
+        }
+
+        /* About Page Specific Styles */
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: left; /* Align text within columns */
+        }
+
+        .about-image {
+            width: 100%;
+            max-width: 400px; /* Max width for image */
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            margin-bottom: 30px; /* Space below image */
+            object-fit: cover;
+            height: 400px; /* Fixed height for consistency, adjust as needed */
+        }
+
+        .about-text {
+            font-size: 1.15em;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 25px;
+            max-width: 700px; /* Max width for text block */
+            text-align: center; /* Center text block within container */
+        }
+
+        .about-text h3 {
+            font-family: 'Playfair Display', serif;
+            color: #6a402a;
+            font-size: 1.8em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .about-text ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 15px;
+        }
+
+        .about-text ul li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 10px;
+        }
+
+        .about-text ul li::before {
+            content: '★'; /* Star icon for list items */
+            color: #8c705e;
+            position: absolute;
+            left: 0;
+            font-size: 1.2em;
+            line-height: 1.8; /* Match line height of text */
+        }
+
+        .cta-button {
+            background-color: #6a402a; /* Earthy brown */
+            color: white;
+            padding: 15px 35px;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            display: inline-block; /* For padding and margins */
+            margin-top: 20px;
+        }
+        .cta-button:hover {
+            background-color: #8c705e; /* Lighter hover */
+            transform: scale(1.03);
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            margin-top: 60px; /* Keep margin-top to separate from content above */
+            font-size: 0.9em;
+        }
+
+        /* Responsive adjustments */
+        @media (min-width: 769px) {
+            .about-content {
+                flex-direction: row; /* Side-by-side on larger screens */
+                justify-content: space-between;
+                align-items: flex-start; /* Align items to the top */
+            }
+
+            .about-image {
+                margin-right: 40px; /* Space between image and text */
+                margin-bottom: 0; /* Remove bottom margin when next to text */
+            }
+
+            .about-text {
+                text-align: left; /* Align text within its column */
+                max-width: 50%; /* Allow text to take half the space */
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                align-items: center;
+                padding: 10px;
+            }
+            .logo-container {
+                margin-bottom: 10px;
+            }
+            .site-title {
+                font-size: 2em;
+            }
+            nav {
+                width: 100%;
+                text-align: center;
+            }
+            nav a {
+                padding: 10px 15px;
+                font-size: 0.9em;
+            }
+            .container {
+                padding: 40px 15px;
+            }
+            .section-title {
+                font-size: 2.5em;
+            }
+            .about-image {
+                max-width: 300px;
+                height: 300px;
+            }
+            .about-text {
+                font-size: 1em;
+            }
+        }
+        @media (max-width: 480px) {
+            .logo {
+                height: 50px;
+            }
+            .site-title {
+                font-size: 1.8em;
+            }
+            nav a {
+                padding: 8px 10px;
+                font-size: 0.8em;
+            }
+            .section-title {
+                font-size: 2em;
+            }
+            .about-image {
+                max-width: 250px;
+                height: 250px;
+            }
+            .about-text h3 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="logo.png" alt="Lens Dance Logo" class="logo">
+            <a href="index.html" class="site-title">Lens Dance</a>
+        </div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html" class="active">About Me</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="contact.html">Contact Us</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2 class="section-title">About Lens Dance & Me</h2>
+        <p>Discover the passion and story behind my equine photography.</p>
+
+        <div class="about-content">
+            <img src="/pics/me.png" alt="Photographer Profile Picture" class="about-image">
+            <div class="about-text">
+                <h3>My Journey with Horses & Photography</h3>
+                <p>Hello! I'm [Your Name], the eye behind Lens Dance. My journey into equine photography began over [Number] years ago, fueled by a lifelong passion for horses and a deep appreciation for their majestic presence. From the thundering hooves of a gallop to the quiet, soulful gaze of a mare, I find immense joy in capturing these beautiful creatures in their truest form.</p>
+
+                <p>My goal is to create more than just photographs; I aim to craft **artistic narratives** that convey the unique spirit and bond shared between humans and equines. Every session is an opportunity to tell a story, whether it's the dynamic action of a performance horse, the serene grace of a pasture companion, or the unbreakable connection between a rider and their beloved partner.</p>
+
+                <h3>What Makes Lens Dance Unique?</h3>
+                <ul>
+                    <li>★ **Equine Expertise:** I understand horse behavior and dynamics, ensuring comfortable and authentic captures.</li>
+                    <li>★ **Artistic Vision:** My approach goes beyond simple documentation, focusing on creative composition and lighting.</li>
+                    <li>★ **Personalized Sessions:** Tailored experiences to meet your specific needs and highlight your horse's individuality.</li>
+                    <li>★ **Timeless Keepsakes:** Delivering high-quality, memorable images that you'll cherish for a lifetime.</li>
+                </ul>
+                <p>Thank you for visiting Lens Dance. I look forward to the possibility of working with you to capture the magic of your equine companion.</p>
+                <a href="contact.html" class="cta-button">Let's Connect!</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Lens Dance. All rights reserved.</p>
+    </footer>
+</body>
+</html>
