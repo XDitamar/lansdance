@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gallery - Lens Dance: Horse Photography</title>
@@ -426,6 +428,19 @@
             <a href="index.html">Home</a>
             <a href="gallery.html" class="active">Gallery</a>
             <a href="contact.html">Contact Us</a>
+
+             <!-- <div class="translate-widget-container">
+                <div class="translate-icon" id="translate-icon">
+                    <i class="fas fa-globe"></i> </div>
+                <div class="language-dropdown" id="language-dropdown">
+                    <a href="#" data-lang="en">English</a>
+                    <a href="#" data-lang="he">עברית (Hebrew)</a>
+                    <a href="#" data-lang="es">Español (Spanish)</a>
+                    <a href="#" data-lang="fr">Français (French)</a>
+                    </div>
+            </div>
+
+            <div id="google_translate_element" style="display: none;"></div> -->
         </nav>
     </header>
 
@@ -558,6 +573,16 @@
    
         </div>
     </footer>
+    <script type="text/javascript">
+            function googleTranslateElementInit() {
+                new google.translate.TranslateElement({
+                    pageLanguage: 'en',
+                    includedLanguages: 'he', // This is Hebrew
+                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+                }, 'google_translate_element');
+            }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <script>
         // Gallery Section Toggling
@@ -658,5 +683,6 @@
 
         applyFilter(); // Initialize filter and show default gallery on page load
     </script>
+    
 </body>
 </html>
