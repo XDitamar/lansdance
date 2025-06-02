@@ -5,355 +5,425 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - Lens Dance: Horse Photography</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Georgia', serif; /* A more elegant font */
-            margin: 0;
-            padding: 0;
-            background-color: #f8f5ed; /* Soft, natural background */
-            color: #333;
-            /* --- Sticky Footer CSS --- */
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh; /* Make body at least viewport height */
-            /* --- End Sticky Footer CSS --- */
-        }
-        header {
-            background-color: #fff;
-            padding: 10px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .logo-container {
-            display: flex;
-            align-items: center;
-        }
-        .logo {
-            height: 60px; /* Adjust as needed */
-            margin-right: 15px;
-        }
-        .site-title {
-            font-family: 'Playfair Display', serif; /* A stylish font for the title */
-            font-size: 2.5em;
-            color: #6a402a; /* Earthy tone */
-            text-decoration: none;
-            white-space: nowrap; /* Prevents wrapping on smaller screens */
-        }
-        nav {
-            background-color: #5b4232; /* Darker earthy tone */
-            overflow: hidden;
-            text-align: center;
-            flex-grow: 1; /* Allows nav to take available space */
-        }
-        nav a {
-            display: inline-block; /* For horizontal centering */
-            color: white;
-            text-align: center;
-            padding: 14px 25px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
-        }
-        nav a:hover {
-            background-color: #8c705e; /* Lighter hover */
-        }
+  <style>
+    body {
+        font-family: 'Georgia', serif; /* A more elegant font */
+        margin: 0;
+        padding: 0;
+        background-color: #f8f5ed; /* Soft, natural background */
+        color: #333;
+        /* --- Sticky Footer CSS --- */
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh; /* Make body at least viewport height */
+        /* --- End Sticky Footer CSS --- */
+    }
+    header {
+        background-color: #fff;
+        padding: 10px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .logo-container {
+        display: flex;
+        align-items: center;
+    }
+    .logo {
+        height: 60px; /* Adjust as needed */
+        margin-right: 15px;
+    }
+    .site-title {
+        font-family: 'Playfair Display', serif; /* A stylish font for the title */
+        font-size: 2.5em;
+        color: #6a402a; /* Earthy tone */
+        text-decoration: none;
+        white-space: nowrap; /* Prevents wrapping on smaller screens */
+    }
+    nav {
+        background-color: #5b4232; /* Darker earthy tone */
+        overflow: hidden;
+        text-align: center;
+        flex-grow: 1; /* Allows nav to take available space */
+    }
+    nav a {
+        display: inline-block; /* For horizontal centering */
+        color: white;
+        text-align: center;
+        padding: 14px 25px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+    }
+    nav a:hover {
+        background-color: #8c705e; /* Lighter hover */
+    }
+    nav a.active { /* Style for the active navigation link */
+        background-color: #6a402a;
+        box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+        cursor: default;
+    }
 
-        /* Hero Video Section */
-        .hero-video-container {
-            position: relative;
-            width: 100%;
-            height: 70vh; /* 70% of viewport height */
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-        .hero-video {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            z-index: -1;
-            transform: translate(-50%, -50%);
-            object-fit: cover; /* Ensures video covers the container */
-        }
-        .video-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.4); /* Dark overlay for readability */
-            z-index: 0;
-        }
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-            padding: 20px;
-        }
+    /* Hero Video Section (Typically for index.html) */
+    .hero-video-container {
+        position: relative;
+        width: 100%;
+        height: 70vh; /* 70% of viewport height */
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    .hero-video {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        z-index: -1;
+        transform: translate(-50%, -50%);
+        object-fit: cover; /* Ensures video covers the container */
+    }
+    .video-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.4); /* Dark overlay for readability */
+        z-index: 0;
+    }
+    .hero-content {
+        position: relative;
+        z-index: 1;
+        max-width: 800px;
+        padding: 20px;
+    }
+    .hero-content h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: 4.5em; /* Larger for impact */
+        margin-bottom: 15px;
+        line-height: 1.1;
+        text-shadow: 2px 2px 6px rgba(0,0,0,0.8);
+    }
+    .hero-content p {
+        font-size: 1.6em;
+        max-width: 700px;
+        margin: 0 auto 30px auto;
+        text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+    }
+    .cta-button { /* General button for hero section */
+        background-color: #6a402a; /* Earthy brown */
+        color: white;
+        padding: 15px 35px;
+        text-decoration: none;
+        font-size: 1.2em;
+        font-weight: bold;
+        border-radius: 5px;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        display: inline-block; /* For padding and margins */
+    }
+    .cta-button:hover {
+        background-color: #8c705e; /* Lighter hover */
+        transform: scale(1.03);
+    }
+
+    /* General Container and Titles for content sections */
+    .container {
+        padding: 60px 20px; /* More padding for sections */
+        max-width: 1200px;
+        margin: 0 auto;
+        text-align: center;
+        /* --- Sticky Footer CSS --- */
+        flex-grow: 1; /* Allows this content to expand and push footer down */
+        /* --- End Sticky Footer CSS --- */
+    }
+    .section-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 3em; /* Slightly larger titles */
+        color: #6a402a;
+        margin-bottom: 30px;
+        position: relative;
+        padding-bottom: 10px;
+    }
+    .section-title::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background-color: #8c705e;
+        border-radius: 2px;
+    }
+
+    /* Featured Images Section (Typically for gallery.html or homepage sections) */
+    .featured-images-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+        margin-top: 40px;
+    }
+    .featured-image-item {
+        background-color: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        transition: transform 0.2s ease;
+    }
+    .featured-image-item:hover {
+        transform: translateY(-8px);
+    }
+    .featured-image-item img {
+        width: 100%;
+        height: 280px; /* Consistent height for images */
+        object-fit: cover;
+        display: block;
+    }
+    .featured-image-caption {
+        padding: 20px;
+        font-size: 1.1em;
+        color: #5b4232;
+    }
+
+    /* Services and Pricing Sections (Typically for signup.html or services section) */
+    .services-grid, .pricing-grid {
+        display: grid; /* Changed to grid for better control of cards and button */
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive columns */
+        gap: 25px; /* Gap between grid items */
+        margin-top: 40px;
+        justify-items: center; /* Centers grid items horizontally */
+    }
+    .service-card, .price-card {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        padding: 30px;
+        width: 100%; /* Ensures cards fill their grid cell */
+        max-width: 400px; /* Max width for individual cards */
+        text-align: left;
+        transition: transform 0.2s ease;
+        box-sizing: border-box; /* Include padding in element's total width and height */
+        display: flex; /* Flexbox for internal content of card */
+        flex-direction: column; /* Stack content vertically */
+        justify-content: space-between; /* Pushes content and button apart if needed */
+    }
+    .service-card:hover, .price-card:hover {
+        transform: translateY(-8px);
+    }
+    .service-card h3, .price-card h3 {
+        font-family: 'Playfair Display', serif;
+        color: #6a402a;
+        font-size: 1.8em;
+        margin-top: 0;
+        margin-bottom: 15px;
+    }
+    .service-card p, .price-card ul {
+        font-size: 1.05em;
+        line-height: 1.6;
+        color: #555;
+    }
+    .price-card ul {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 20px;
+    }
+    .price-card ul li {
+        margin-bottom: 8px;
+        position: relative;
+        padding-left: 25px;
+    }
+    .price-card ul li::before {
+        content: '✓';
+        color: #6a402a;
+        position: absolute;
+        left: 0;
+        font-weight: bold;
+    }
+    .price-range-text {
+        font-size: 1.3em;
+        font-weight: bold;
+        color: #5b4232;
+        margin-bottom: 15px;
+    }
+    .contact-cta { /* Styling for "Book it now" button and individual card buttons */
+        display: inline-block;
+        background-color: #6a402a; /* Primary button color */
+        color: white;
+        padding: 12px 25px;
+        text-decoration: none;
+        font-weight: bold;
+        border-radius: 5px;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        margin-top: auto; /* Pushes button to the bottom of the flex card */
+        font-size: 1.1em;
+        min-width: 180px; /* Ensures a minimum width for the button */
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .contact-cta:hover {
+        background-color: #8c705e; /* Lighter shade on hover */
+        transform: translateY(-2px);
+    }
+
+    /* Form Specific Styles (For signup.html) */
+    .form-container {
+        padding: 40px 0;
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    .form-container p {
+        margin-bottom: 30px;
+        font-size: 1.1em;
+        color: #5b4232;
+        padding: 0 20px;
+    }
+    .google-form-embed {
+        width: 100%;
+        max-width: 700px;
+        margin: 0 auto;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    .google-form-embed iframe {
+        display: block;
+        width: 100%;
+        height: 800px; /* Adjust height based on your Google Form's length */
+    }
+
+    /* Footer */
+    footer {
+        background-color: #333;
+        color: white;
+        text-align: center;
+        padding: 25px;
+        margin-top: 60px;
+        font-size: 0.9em;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* This line centers the items horizontally */
+        gap: 10px;
+    }
+    /* Footer Social Links */
+    .social-links {
+        display: flex;
+        gap: 15px; /* Space between social icons */
+        margin-top: 10px; /* Optional: space above the icons */
+    }
+    .social-links a {
+        text-decoration: none; /* Remove underline from links */
+    }
+    .social-links img {
+        width: 24px; /* Adjusted size of your social icons */
+        height: 24px; /* Adjusted size of your social icons */
+        transition: transform 0.2s ease-in-out;
+    }
+    .social-links img:hover {
+        transform: scale(1.1); /* Slightly enlarge icons on hover */
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 900px) {
         .hero-content h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 4.5em; /* Larger for impact */
-            margin-bottom: 15px;
-            line-height: 1.1;
-            text-shadow: 2px 2px 6px rgba(0,0,0,0.8);
+            font-size: 3.5em;
         }
         .hero-content p {
-            font-size: 1.6em;
-            max-width: 700px;
-            margin: 0 auto 30px auto;
-            text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
-        }
-        .cta-button {
-            background-color: #6a402a; /* Earthy brown */
-            color: white;
-            padding: 15px 35px;
-            text-decoration: none;
-            font-size: 1.2em;
-            font-weight: bold;
-            border-radius: 5px;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            display: inline-block; /* For padding and margins */
-        }
-        .cta-button:hover {
-            background-color: #8c705e; /* Lighter hover */
-            transform: scale(1.03);
-        }
-
-        /* General Container and Titles */
-        .container {
-            padding: 60px 20px; /* More padding for sections */
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-            /* --- Sticky Footer CSS --- */
-            flex-grow: 1; /* Allows this content to expand and push footer down */
-            /* --- End Sticky Footer CSS --- */
+            font-size: 1.3em;
         }
         .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 3em; /* Slightly larger titles */
-            color: #6a402a;
-            margin-bottom: 30px;
-            position: relative;
-            padding-bottom: 10px;
+            font-size: 2.5em;
         }
-        .section-title::after {
-            content: '';
-            position: absolute;
-            left: 50%;
-            bottom: 0;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background-color: #8c705e;
-            border-radius: 2px;
+    }
+    @media (max-width: 768px) {
+        header {
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
         }
-
-        /* Featured Images Section */
-        .featured-images-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 40px;
+        .logo-container {
+            margin-bottom: 10px;
         }
-        .featured-image-item {
-            background-color: #fff;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            transition: transform 0.2s ease;
+        .site-title {
+            font-size: 2em;
         }
-        .featured-image-item:hover {
-            transform: translateY(-8px);
-        }
-        .featured-image-item img {
+        nav {
             width: 100%;
-            height: 280px; /* Consistent height for images */
-            object-fit: cover;
-            display: block;
-        }
-        .featured-image-caption {
-            padding: 20px;
-            font-size: 1.1em;
-            color: #5b4232;
-        }
-
-        /* Services and Pricing Sections */
-        .services-grid, .pricing-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 40px;
-        }
-        .service-card, .price-card {
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            padding: 30px;
-            flex: 1;
-            min-width: 280px;
-            max-width: 400px;
-            text-align: left;
-            transition: transform 0.2s ease;
-        }
-        .service-card:hover, .price-card:hover {
-            transform: translateY(-8px);
-        }
-        .service-card h3, .price-card h3 {
-            font-family: 'Playfair Display', serif;
-            color: #6a402a;
-            font-size: 1.8em;
-            margin-top: 0;
-            margin-bottom: 15px;
-        }
-        .service-card p, .price-card ul {
-            font-size: 1.05em;
-            line-height: 1.6;
-            color: #555;
-        }
-        .price-card ul {
-            list-style: none;
-            padding: 0;
-            margin-bottom: 20px;
-        }
-        .price-card ul li {
-            margin-bottom: 8px;
-            position: relative;
-            padding-left: 25px;
-        }
-        .price-card ul li::before {
-            content: '✓';
-            color: #6a402a;
-            position: absolute;
-            left: 0;
-            font-weight: bold;
-        }
-        .price-range-text {
-            font-size: 1.3em;
-            font-weight: bold;
-            color: #5b4232;
-            margin-bottom: 15px;
-        }
-        .contact-cta {
-            background-color: #5b4232;
-            color: white;
-            padding: 12px 25px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            display: inline-block;
-            margin-top: 20px;
-            transition: background-color 0.3s ease;
-        }
-        .contact-cta:hover {
-            background-color: #6a402a;
-        }
-
-        footer {
-            background-color: #333;
-            color: white;
             text-align: center;
-            padding: 25px;
-            margin-top: 60px;
+        }
+        nav a {
+            padding: 10px 15px;
             font-size: 0.9em;
         }
-
-        /* Responsive adjustments */
-        @media (max-width: 900px) {
-            .hero-content h1 {
-                font-size: 3.5em;
-            }
-            .hero-content p {
-                font-size: 1.3em;
-            }
-            .section-title {
-                font-size: 2.5em;
-            }
+        .hero-video-container {
+            height: 50vh;
         }
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                align-items: center;
-                padding: 10px;
-            }
-            .logo-container {
-                margin-bottom: 10px;
-            }
-            .site-title {
-                font-size: 2em;
-            }
-            nav {
-                width: 100%;
-                text-align: center;
-            }
-            nav a {
-                padding: 10px 15px;
-                font-size: 0.9em;
-            }
-            .hero-video-container {
-                height: 50vh;
-            }
-            .hero-content h1 {
-                font-size: 2.8em;
-            }
-            .hero-content p {
-                font-size: 1.1em;
-            }
-            .cta-button {
-                padding: 12px 25px;
-                font-size: 1em;
-            }
-            .container {
-                padding: 40px 15px;
-            }
-            .service-card, .price-card {
-                flex: 1 1 100%; /* Stack on smaller screens */
-                max-width: 500px; /* Limit width even when stacked */
-            }
+        .hero-content h1 {
+            font-size: 2.8em;
         }
-        @media (max-width: 480px) {
-            .logo {
-                height: 50px;
-            }
-            .site-title {
-                font-size: 1.8em;
-            }
-            nav a {
-                padding: 8px 10px;
-                font-size: 0.8em;
-            }
-            .hero-video-container {
-                height: 40vh;
-            }
-            .hero-content h1 {
-                font-size: 2em;
-            }
-            .hero-content p {
-                font-size: 0.9em;
-            }
-            .cta-button {
-                padding: 10px 20px;
-                font-size: 0.9em;
-            }
-            .section-title {
-                font-size: 2em;
-            }
-            .featured-image-item img {
-                height: 200px;
-            }
+        .hero-content p {
+            font-size: 1.1em;
         }
-    </style>
+        .cta-button {
+            padding: 12px 25px;
+            font-size: 1em;
+        }
+        .container {
+            padding: 40px 15px;
+        }
+        /* Pricing and Services cards stack on smaller screens */
+        .service-card, .price-card {
+            flex: 1 1 100%; /* Stack on smaller screens */
+            max-width: 500px; /* Limit width even when stacked */
+        }
+        .google-form-embed iframe {
+            height: 600px; /* Adjust height for smaller screens */
+        }
+    }
+    @media (max-width: 480px) {
+        .logo {
+            height: 50px;
+        }
+        .site-title {
+            font-size: 1.8em;
+        }
+        nav a {
+            padding: 8px 10px;
+            font-size: 0.8em;
+        }
+        .hero-video-container {
+            height: 40vh;
+        }
+        .hero-content h1 {
+            font-size: 2em;
+        }
+        .hero-content p {
+            font-size: 0.9em;
+        }
+        .cta-button {
+            padding: 10px 20px;
+            font-size: 0.9em;
+        }
+        .section-title {
+            font-size: 2em;
+        }
+        .featured-image-item img {
+            height: 200px;
+        }
+    }
+</style>
 </head>
 <body>
     <header>
@@ -365,7 +435,7 @@
             <a href="index.html" class="active">Home</a>
             <!-- <a href="about.html">About Me</a> -->
             <a href="gallery.html">Gallery</a>
-            <a href="contact.html">Contact Us</a>
+            <a href="contact.html">Book now</a>
         </nav>
     </header>
 
@@ -430,43 +500,78 @@
     </div>
 
     <div class="container" style="background-color: #f0ede5; border-radius: 10px; padding: 50px 20px;">
-        <h2 class="section-title">Price Range</h2>
-        <p>Understanding your investment. Please note these are starting ranges; a custom quote is provided after consultation to meet your specific needs.</p>
-        <div class="pricing-grid">
-            <div class="price-card">
-                <h3>Standard Session</h3>
-                <p>Perfect for individual horse portraits or a simple horse & rider session.</p>
-                <ul>
-                    <li>✓ 1-2 hours of shooting</li>
-                    <li>✓ 1 location</li>
-                    <li>✓ 15-20 edited high-resolution digital images</li>
-                    <li>✓ Online private gallery</li>
-                </ul>
-                <p class="price-range-text">Starting from: $X00 - $Y00</p>
-                <a href="contact.html" class="contact-cta">Inquire Now</a>
-            </div>
-            <div class="price-card">
-                <h3>Premium Collection</h3>
-                <p>Ideal for comprehensive coverage, multiple looks, or small groups.</p>
-                <ul>
-                    <li>✓ 2-4 hours of shooting</li>
-                    <li>✓ Up to 2 locations</li>
-                    <li>✓ 30-40 edited high-resolution digital images</li>
-                    <li>✓ Online private gallery & Print release</li>
-                    <li>✓ Option for professional prints/albums</li>
-                </ul>
-                <p class="price-range-text">Starting from: $A00 - $B00</p>
-                <a href="contact.html" class="contact-cta">Request a Quote</a>
-            </div>
+    <h2 class="section-title">Pricing & Packages</h2>
+    <p>Understanding your investment. Please note these are starting ranges; a custom quote is provided after consultation to meet your specific needs.</p>
+
+    <div class="pricing-grid">
+        <div class="price-card">
+            <h3>Photos per Round/Class</h3>
+            <p>Perfect for capturing every moment of your horse's performance in competitions.</p>
+            <ul>
+                <li>✓ **60 NIS per person** (includes 10 NIS deposit)</li>
+                <li>✓ **30 NIS for additional horse** in the same round</li>
+                <li>✓ High-resolution digital photos</li>
+                <li>✓ Secure online delivery</li>
+            </ul>
+            <p class="price-range-text">Starting from: 60 NIS</p>
         </div>
-        <p style="margin-top: 30px; font-style: italic; color: #666;">
-            All packages are customizable. Travel fees may apply for locations outside [Your Area].
-        </p>
+
+        <div class="price-card">
+            <h3>Photos by Selection</h3>
+            <p>Review all unedited photos and choose only your favorites for final editing.</p>
+            <ul>
+                <li>✓ Drive access to all basic-edited photos (with logo)</li>
+                <li>✓ **6 NIS per final edited photo**</li>
+                <li>✓ First 2 photos included in deposit</li>
+                <li>✓ Only pay for the photos you love!</li>
+            </ul>
+            <p class="price-range-text">Starting from: 6 NIS per photo</p>
+        </div>
+
+        <div class="price-card">
+            <h3>Video Package</h3>
+            <p>Capture the movement and spirit of your horse in dynamic video format.</p>
+            <ul>
+                <li>✓ Drive access to all raw video clips</li>
+                <li>✓ Custom-edited Instagram Reel (song options provided)</li>
+                <li>✓ **150 NIS total** (includes 40 NIS deposit)</li>
+                <li>✓ Perfect for social media sharing</li>
+            </ul>
+            <p class="price-range-text">Total Price: 150 NIS</p>
+          
+        </div>
+
+        <div class="price-card">
+            <h3>Custom Package</h3>
+            <p>Tailor-made photography or video sessions designed specifically for your unique vision and needs.</p>
+            <ul>
+                <li>✓ Personalized consultation to define your goals</li>
+                <li>✓ **You choose the number of final images**</li>
+                <li>✓ Ideal for events, multiple horses/riders, or special projects</li>
+                <li>✓ Flexible package creation with a custom price</li>
+            </ul>
+            <p class="price-range-text">Price: Determined after consultation</p>
+        </div>
+        <a href="contact.html" class="contact-cta">Book it now</a>
     </div>
+
+    <p style="margin-top: 30px; font-style: italic; color: #666;">
+        All services are customizable. Travel fees may apply for locations outside [Your Area].
+        <br>Payment accepted via Bit, cash, or PayBox. Deposit refunds are available for issues on our end.
+    </p>
+</div>
 
     <footer>
         <p>&copy; 2025 Lens Dance. All rights reserved.</p>
+        <div class="social-links">
+            <a href="https://www.tiktok.com/@lens.dance" target="_blank" aria-label="Tiktok">
+                <img src="/pics/tiktok.png" alt="Tiktok">
+            </a>
+            <a href="https://www.instagram.com/lens.dance" target="_blank" aria-label="Instagram">
+                <img src="/pics/instagram.png" alt="Instagram">
+            </a>
+    
+            </div>
     </footer>
-
 </body>
 </html>

@@ -379,6 +379,39 @@
                 height: 180px;
             }
         }
+                footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            margin-top: 60px;
+            font-size: 0.9em;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* This line centers the items horizontally */
+            gap: 10px;
+        }
+
+        /* Footer Social Links */
+        .social-links {
+            display: flex;
+            gap: 15px; /* Space between social icons */
+            margin-top: 10px; /* Optional: space above the icons */
+        }
+
+        .social-links a {
+            text-decoration: none; /* Remove underline from links */
+        }
+
+        .social-links img {
+            width: 24px; /* Adjusted size of your social icons */
+            height: 24px; /* Adjusted size of your social icons */
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .social-links img:hover {
+            transform: scale(1.1); /* Slightly enlarge icons on hover */
+        }
     </style>
 </head>
 <body>
@@ -557,8 +590,17 @@
         <div id="lightboxCaption" class="lightbox-caption"></div>
     </div>
 
-    <footer>
-        <p>&copy; 2025 Lens Dance. All rights reserved.</p>
+   <footer>
+    <p>&copy; 2025 Lens Dance. All rights reserved.</p>
+    <div class="social-links">
+        <a href="https://www.tiktok.com/@lens.dance" target="_blank" aria-label="Tiktok">
+            <img src="/pics/tiktok.png" alt="Tiktok">
+        </a>
+        <a href="https://www.instagram.com/lens.dance" target="_blank" aria-label="Instagram">
+            <img src="/pics/instagram.png" alt="Instagram">
+        </a>
+   
+        </div>
     </footer>
 
     <script>
