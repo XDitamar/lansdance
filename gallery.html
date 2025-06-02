@@ -175,6 +175,8 @@
             font-size: 1em;
             color: #5b4232;
             text-align: left;
+                      display: none;
+
         }
         .video-caption h3 {
             font-family: 'Playfair Display', serif;
@@ -182,6 +184,8 @@
             font-size: 1.4em;
             margin-top: 0;
             margin-bottom: 5px;
+            display: none;
+
         }
 
         /* Photo Gallery */
@@ -231,6 +235,7 @@
         .photo-item:hover .overlay {
             opacity: 1;
         }
+    
         .photo-item .overlay span {
             color: white;
             font-size: 1.2em;
@@ -273,10 +278,7 @@
             object-fit: contain; /* Ensures the entire image is visible without cropping */
         }
         .lightbox-caption {
-            margin-top: 10px;
-            text-align: center;
-            color: white;
-            font-size: 1.2em;
+          display: none;
         }
         .close-lightbox {
             position: absolute;
@@ -449,8 +451,10 @@
                     </video>
                     <div class="video-caption">
                         <h3>Morning Gallop</h3>
-                        <p>The beauty of a horse at full stride in the early light. (Western, Action)</p>
+                        <p>(show jump, Action)</p>
                     </div>
+                    <!-- <div class="video-caption">
+                    </div> -->
                 </div>
                 <div class="video-item">
                     <video controls muted playsinline poster="horse-video-2.jpg">
@@ -458,50 +462,31 @@
                         Your browser does not support the video tag.
                     </video>
                     <div class="video-caption">
-                        <h3>Freestyle Liberty</h3>
-                        <p>An amazing display of agility and connection. (Training, Outdoor)</p>
+                        <h3>Morning Gallop</h3>
+                        <p> (show jump, Action)</p>
                     </div>
                 </div>
-                <div class="video-item">
-                    <video controls muted playsinline poster="horse-video-3.jpg">
+                     <div class="video-item">
+                    <video controls muted playsinline poster="horse-video-2.jpg">
                         <source src="/vid/vid3.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
-                    <div class="video-caption">
-                        <h3>Equestrian Event Highlight</h3>
-                        <p>Key moments from a recent show jumping competition. (Show Jump, Competition)</p>
+                       <div class="video-caption">
+                        <h3>Morning Gallop</h3>
+                        <p> (show jump, Action)</p>
                     </div>
                 </div>
-                <div class="video-item">
-                    <video controls muted playsinline poster="video-poster-4.jpg">
-                        <source src="horse-video-4.mp4" type="video/mp4">
+                     <div class="video-item">
+                    <video controls muted playsinline poster="horse-video-2.jpg">
+                        <source src="/vid/vid4.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
-                    <div class="video-caption">
-                        <h3>Graceful Dressage</h3>
-                        <p>The precision and artistry of a dressage routine. (Dressage, Performance)</p>
+                       <div class="video-caption">
+                        <h3>Morning Gallop</h3>
+                        <p>(Western, Action)</p>
                     </div>
                 </div>
-                <div class="video-item">
-                    <video controls muted playsinline poster="video-poster-5.jpg">
-                        <source src="horse-video-5.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    <div class="video-caption">
-                        <h3>Winter Wonderland Ride</h3>
-                        <p>A tranquil ride through a snowy landscape. (Winter, Outdoor, Scenic)</p>
-                    </div>
-                </div>
-                <div class="video-item">
-                    <video controls muted playsinline poster="video-poster-6.jpg">
-                        <source src="horse-video-6.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    <div class="video-caption">
-                        <h3>Foal's First Steps</h3>
-                        <p>Capturing the adorable and wobbly first steps of a young foal. (Foal, Cute)</p>
-                    </div>
-                </div>
+               
             </div>
         </div>
 
@@ -509,77 +494,48 @@
             <h3>Frozen Moments of Grace</h3>
             <div class="photo-gallery-grid">
                 <div class="photo-item">
-                    <img src="/pics/pic1.png" alt="Horse Portrait Golden Hour Western">
+                    <img src="/pics/pic1.png" alt="Show Jump">
                     <div class="overlay"><span>View Photo</span></div>
-                    <div class="photo-caption">
-                        <h3>Golden Hour Elegance</h3>
-                        <p>A stunning portrait bathed in the warm glow of sunset.</p>
-                    </div>
                 </div>
                 <div class="photo-item">
-                    <img src="/pics/pic2.png" alt="Horse and Rider Bond Dressage">
+                    <img src="/pics/pic2.png" alt="Show Jump">
                     <div class="overlay"><span>View Photo</span></div>
-                    <div class="photo-caption">
-                        <h3>Deep Connection</h3>
-                        <p>Capturing the profound bond between horse and rider.</p>
-                    </div>
                 </div>
                 <div class="photo-item">
-                    <img src="/pics/pic3.png" alt="Dynamic Show Jump Horse Action">
+                    <img src="/pics/pic3.png" alt="Show Jump">
                     <div class="overlay"><span>View Photo</span></div>
-                    <div class="photo-caption">
-                        <h3>Leap of Power</h3>
-                        <p>An exhilarating shot of a horse clearing a jump with grace.</p>
-                    </div>
                 </div>
                 <div class="photo-item">
-                    <img src="/pics/pic4.png" alt="Horse in Field Western">
+                    <img src="/pics/pic4.png" alt="Show Jump">
                     <div class="overlay"><span>View Photo</span></div>
-                    <div class="photo-caption">
-                        <h3>Pastoral Serenity</h3>
-                        <p>Peaceful moments in a lush, green pasture.</p>
-                    </div>
                 </div>
                 <div class="photo-item">
-                    <img src="/pics/pic5.png" alt="Close-up Horse Eye Portrait">
+                    <img src="/pics/pic5.png" alt="Show Jump">
                     <div class="overlay"><span>View Photo</span></div>
-                    <div class="photo-caption">
-                        <h3>Expressive Eyes</h3>
-                        <p>A close-up capturing the intelligence and depth in a horse's gaze.</p>
-                    </div>
                 </div>
                 <div class="photo-item">
-                    <img src="/pics/pic6.png" alt="Rider and Horse Harmony Dressage">
+                    <img src="/pics/pic6.png" alt="western">
                     <div class="overlay"><span>View Photo</span></div>
-                    <div class="photo-caption">
-                        <h3>Harmony in Motion</h3>
-                        <p>A rider and horse working in perfect sync.</p>
-                    </div>
                 </div>
                 <div class="photo-item">
-                    <img src="https://via.placeholder.com/400x320/708090/FFFFFF?text=Horse+7" alt="Horse in snow Western Landscape">
+                    <img src="/pics/pic7.png" alt="western">
                     <div class="overlay"><span>View Photo</span></div>
-                    <div class="photo-caption">
-                        <h3>Winter Majesty</h3>
-                        <p>A beautiful horse standing gracefully in fresh snow.</p>
-                    </div>
                 </div>
                 <div class="photo-item">
-                    <img src="https://via.placeholder.com/400x280/D2B48C/FFFFFF?text=Horse+8" alt="Horse portrait in barn indoor">
+                    <img src="/pics/pic8.png" alt="Show Jump">
                     <div class="overlay"><span>View Photo</span></div>
-                    <div class="photo-caption">
-                        <h3>Barnside Beauty</h3>
-                        <p>A relaxed portrait captured in the rustic charm of a stable.</p>
-                    </div>
                 </div>
                 <div class="photo-item">
-                    <img src="https://via.placeholder.com/400x350/BDB76B/FFFFFF?text=Horse+9" alt="Sunset silhouetted horse scenic">
+                    <img src="/pics/pic9.png" alt="Show Jump">
                     <div class="overlay"><span>View Photo</span></div>
-                    <div class="photo-caption">
-                        <h3>Sunset Silhouette</h3>
-                        <p>The striking outline of a horse against a vibrant evening sky.</p>
-                    </div>
                 </div>
+                <div class="photo-item">
+                    <img src="/pics/pic10.png" alt="Show Jump">
+                    <div class="overlay"><span>View Photo</span></div>
+                </div>
+              
+               
+               
             </div>
         </div>
     </div>
