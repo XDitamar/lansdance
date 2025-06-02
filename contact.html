@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - Lens Dance: Horse Photography</title>
+    <title>Sign Up for the next competition - Lens Dance: Horse Photography</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Georgia:400,700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -12,9 +12,9 @@
             padding: 0;
             background-color: #f8f5ed;
             color: #333;
-            display: flex; /* Added for sticky footer layout */
-            flex-direction: column; /* Added for sticky footer layout */
-            min-height: 100vh; /* Added for sticky footer layout */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
         header {
             background-color: #fff;
@@ -37,13 +37,13 @@
             font-size: 2.5em;
             color: #6a402a;
             text-decoration: none;
-            white-space: nowrap; /* ADDED: To prevent title wrapping */
+            white-space: nowrap;
         }
         nav {
             background-color: #5b4232;
             overflow: hidden;
             text-align: center;
-            flex-grow: 1; /* ADDED: To make nav take available space */
+            flex-grow: 1;
         }
         nav a {
             display: inline-block;
@@ -59,21 +59,23 @@
         }
         nav a.active {
             background-color: #6a402a;
-            box-shadow: inset 0 2px 5px rgba(0,0,0,0.2); /* ADDED: For consistent active link style */
-            cursor: default; /* ADDED: Indicate active link is not clickable */
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+            cursor: default;
         }
+
+        /* General Container and Titles */
         .container {
-            padding: 40px 20px;
-            max-width: 800px;
+            padding: 60px 20px;
+            max-width: 1200px; /* This sets the overall page content width */
             margin: 0 auto;
             text-align: center;
-            flex-grow: 1; /* Added for sticky footer layout */
+            flex-grow: 1;
         }
         .section-title {
             font-family: 'Playfair Display', serif;
-            font-size: 2.5em;
+            font-size: 3em;
             color: #6a402a;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             position: relative;
             padding-bottom: 10px;
         }
@@ -88,102 +90,49 @@
             background-color: #8c705e;
             border-radius: 2px;
         }
-        .contact-content {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            justify-content: center;
-            margin-top: 30px;
-        }
+
+        /* Contact Form Specific Styles */
         .contact-form-container {
-            flex: 2;
-            min-width: 300px;
+            padding: 40px 0; /* Adjusted padding as overall container has padding */
+            max-width: 800px; /* Max-width for the form content itself */
+            margin: 0 auto;
+            text-align: center;
             background-color: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            text-align: left;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
-        .contact-info {
-            flex: 1;
-            min-width: 250px;
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            text-align: left;
-        }
-        .contact-info h3 {
-            font-family: 'Playfair Display', serif;
-            color: #6a402a;
-            margin-top: 0;
-            margin-bottom: 15px;
-            font-size: 1.6em;
-        }
-        .contact-info p {
-            margin-bottom: 10px;
+
+        .contact-form-container p {
+            margin-bottom: 30px;
             font-size: 1.1em;
-            line-height: 1.5;
-        }
-        .contact-info a {
-            color: #6a402a;
-            text-decoration: none;
-            transition: color 0.2s ease;
-        }
-        .contact-info a:hover {
-            color: #8c705e;
-            text-decoration: underline;
-        }
-        .contact-form-container label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
             color: #5b4232;
+            padding: 0 20px; /* Add horizontal padding to the paragraph */
         }
-        .contact-form-container input[type="text"],
-        .contact-form-container input[type="email"],
-        .contact-form-container textarea {
+
+        .google-form-embed {
             width: 100%;
-            padding: 12px;
-            margin-bottom: 20px;
-            border: 1px solid #dcdcdc;
-            border-radius: 4px;
-            box-sizing: border-box;
-            font-size: 1em;
-            color: #333;
+            /* The max-width below ensures the iframe doesn't get too wide, adjust as needed */
+            max-width: 700px;
+            margin: 0 auto; /* Center the embed */
+            border: 1px solid #ddd; /* Optional: adds a subtle border */
+            border-radius: 8px; /* Optional: rounds corners */
+            overflow: hidden; /* Ensures no scrollbars if content overflows slightly */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* Optional: subtle shadow */
         }
-        .contact-form-container input[type="text"]:focus,
-        .contact-form-container input[type="email"]:focus,
-        .contact-form-container textarea:focus {
-            border-color: #6a402a;
-            outline: none;
-            box-shadow: 0 0 5px rgba(106, 64, 42, 0.2);
+
+        .google-form-embed iframe {
+            display: block; /* Removes extra space below iframe */
+            width: 100%; /* Ensure iframe fills its container */
+            height: 800px; /* Adjust height based on your Google Form's length */
         }
-        .contact-form-container textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-        .contact-form-container button {
-            background-color: #6a402a;
-            color: white;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1.1em;
-            font-weight: bold;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-        .contact-form-container button:hover {
-            background-color: #8c705e;
-            transform: translateY(-2px);
-        }
+
+        /* Footer */
         footer {
             background-color: #333;
             color: white;
             text-align: center;
             padding: 25px;
-            margin-top: 50px;
+            margin-top: 60px;
             font-size: 0.9em;
         }
 
@@ -202,25 +151,26 @@
             }
             nav {
                 width: 100%;
+                text-align: center;
             }
             nav a {
                 padding: 10px 15px;
                 font-size: 0.9em;
             }
             .container {
-                padding: 30px 15px;
+                padding: 40px 15px;
             }
             .section-title {
-                font-size: 2em;
+                font-size: 2.5em;
             }
-            .contact-content {
-                flex-direction: column;
-                gap: 20px;
+            .contact-form-container {
+                padding: 20px 0;
             }
-            .contact-form-container,
-            .contact-info {
-                min-width: unset;
-                width: 100%;
+            .google-form-embed {
+                max-width: 100%; /* Allows iframe to take full width on smaller screens */
+            }
+            .google-form-embed iframe {
+                height: 600px; /* Adjust height for smaller screens */
             }
         }
         @media (max-width: 480px) {
@@ -235,7 +185,7 @@
                 font-size: 0.8em;
             }
             .section-title {
-                font-size: 1.8em;
+                font-size: 2em;
             }
         }
     </style>
@@ -248,49 +198,32 @@
         </div>
         <nav>
             <a href="index.html">Home</a>
-            <a href="about.html">About Me</a>
             <a href="gallery.html">Gallery</a>
             <a href="contact.html" class="active">Contact Us</a>
         </nav>
     </header>
 
     <div class="container">
-        <h1 class="section-title">Get in Touch with Lens Dance</h1>
-        <p>I'd love to hear from you! Whether you have a project in mind, a question about my photography, or just want to chat about horses, feel free to reach out.</p>
-        <div class="contact-content">
-            <div class="contact-form-container">
-                <form action="#" method="POST">
-                    <label for="name">Your Name:</label>
-                    <input type="text" id="name" name="name" required>
+        <div class="contact-form-container">
+            <h2 class="section-title">Sign Up for the next competition</h2>
+            <p>We'd love to hear from you! Please fill out the form below, and we'll get back to you as soon as possible. ✨</p>
 
-                    <label for="email">Your Email:</label>
-                    <input type="email" id="email" name="email" required>
-
-                    <label for="message">Your Message:</label>
-                    <textarea id="message" name="message" required></textarea>
-
-                    <button type="submit">Send Message</button>
-                </form>
-            </div>
-            <div class="contact-info">
-                <h3>Direct Contact</h3>
-                <p><strong>Email:</strong> <a href="mailto:info@lensdance.com">info@lensdance.com</a></p>
-                <p><strong>Phone:</strong> +972 5X-XXX-XXXX (Replace with your actual number)</p>
-                <p>
-                    I aim to respond to all inquiries within 24-48 hours.
-                </p>
-                <h3>Follow My Journey</h3>
-                <p>Connect with me on social media for daily dose of equine beauty:</p>
-                <p>
-                    <a href="https://www.instagram.com/lens.dance" target="_blank">Instagram</a> |
-                    <a href="https://www.tiktok.com/@lens.dance" target="_blank">TikTok</a>
-                </p>
-            </div>
+            <div class="google-form-embed">
+                <iframe src="https://docs.google.com/forms/d/1e5riv71cOnKm1Z51rPIjXpctAe1sQTAjrHM62Hz-Ahg/viewform?embedded=true" 
+                        width="100%" 
+                        height="800" 
+                        frameborder="0" 
+                        marginheight="0" 
+                        marginwidth="0">
+                    Loading…
+                </iframe>
+                </div>
         </div>
     </div>
 
     <footer>
         <p>&copy; 2025 Lens Dance. All rights reserved.</p>
     </footer>
+
 </body>
 </html>

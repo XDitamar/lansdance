@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gallery - Lens Dance: Horse Photography</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Georgia:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght=400;700&family=Georgia:400,700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Georgia', serif;
@@ -56,6 +56,11 @@
         }
         nav a:hover {
             background-color: #8c705e;
+        }
+        nav a.active {
+            background-color: #6a402a;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+            cursor: default;
         }
 
         /* General Container and Titles */
@@ -248,7 +253,7 @@
 
         /* Lightbox for image viewing */
         .lightbox {
-            display: none;
+            display: none; /* Hidden by default */
             position: fixed;
             z-index: 1000;
             left: 0;
@@ -257,15 +262,15 @@
             height: 100%;
             overflow: auto;
             background-color: rgba(0,0,0,0.9);
-            justify-content: center;
-            align-items: center;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
         }
         .lightbox-content {
             margin: auto;
             display: block;
             max-width: 90%;
             max-height: 90%;
-            object-fit: contain;
+            object-fit: contain; /* Ensures the entire image is visible without cropping */
         }
         .lightbox-caption {
             margin-top: 10px;
@@ -381,10 +386,9 @@
         <div class="logo-container">
             <img src="/pics/logo.png" alt="Lens Dance Logo" class="logo">
             <a href="index.html" class="site-title">Lens Dance</a>
-        </div>
+            </div>
         <nav>
             <a href="index.html">Home</a>
-            <a href="about.html">About Me</a>
             <a href="gallery.html" class="active">Gallery</a>
             <a href="contact.html">Contact Us</a>
         </nav>
@@ -465,7 +469,7 @@
                         <p>Capturing the adorable and wobbly first steps of a young foal. (Foal, Cute)</p>
                     </div>
                 </div>
-                </div>
+            </div>
         </div>
 
         <div id="photoGallery" class="gallery-section" style="display: none;">
@@ -496,7 +500,7 @@
                     </div>
                 </div>
                 <div class="photo-item">
-                    <img src="https://via.placeholder.com/400x300/6B8E23/FFFFFF?text=Horse+4" alt="Horse in Field Western">
+                    <img src="/pics/pic4.png" alt="Horse in Field Western">
                     <div class="overlay"><span>View Photo</span></div>
                     <div class="photo-caption">
                         <h3>Pastoral Serenity</h3>
@@ -504,7 +508,7 @@
                     </div>
                 </div>
                 <div class="photo-item">
-                    <img src="https://via.placeholder.com/400x500/A52A2A/FFFFFF?text=Horse+5" alt="Close-up Horse Eye Portrait">
+                    <img src="/pics/pic5.png" alt="Close-up Horse Eye Portrait">
                     <div class="overlay"><span>View Photo</span></div>
                     <div class="photo-caption">
                         <h3>Expressive Eyes</h3>
@@ -512,7 +516,7 @@
                     </div>
                 </div>
                 <div class="photo-item">
-                    <img src="https://via.placeholder.com/400x250/8B4513/FFFFFF?text=Horse+6" alt="Rider and Horse Harmony Dressage">
+                    <img src="/pics/pic6.png" alt="Rider and Horse Harmony Dressage">
                     <div class="overlay"><span>View Photo</span></div>
                     <div class="photo-caption">
                         <h3>Harmony in Motion</h3>
@@ -543,7 +547,7 @@
                         <p>The striking outline of a horse against a vibrant evening sky.</p>
                     </div>
                 </div>
-                </div>
+            </div>
         </div>
     </div>
 
@@ -565,7 +569,7 @@
         const photoGallery = document.getElementById('photoGallery');
         const gallerySearch = document.getElementById('gallerySearch');
 
-        let currentActiveGallery = 'video';
+        let currentActiveGallery = 'video'; // Default to video gallery
 
         function applyFilter() {
             const searchTerm = gallerySearch.value.toLowerCase().trim();
@@ -623,31 +627,38 @@
 
         gallerySearch.addEventListener('input', applyFilter);
 
-        // Lightbox functionality (remains unchanged)
+        // Lightbox functionality
         const lightbox = document.getElementById('myLightbox');
         const lightboxImg = document.getElementById('lightboxImg');
         const lightboxCaption = document.getElementById('lightboxCaption');
         const closeLightbox = document.querySelector('.close-lightbox');
 
-        document.querySelectorAll('.photo-item img').forEach(img => {
-            img.addEventListener('click', function() {
-                lightbox.style.display = 'flex';
-                lightboxImg.src = this.src;
-                lightboxCaption.innerHTML = this.alt;
+        // Attach click listener to each photo item for lightbox
+        document.querySelectorAll('.photo-item').forEach(photoItem => {
+            photoItem.addEventListener('click', function() {
+                const imgElement = this.querySelector('img');
+                const captionElement = this.querySelector('.photo-caption h3');
+
+                if (imgElement) {
+                    lightbox.style.display = 'flex'; // Make the lightbox visible
+                    lightboxImg.src = imgElement.src; // Set the image source
+                    lightboxCaption.innerHTML = captionElement ? captionElement.textContent : imgElement.alt; // Set the caption
+                }
             });
         });
 
         closeLightbox.addEventListener('click', () => {
-            lightbox.style.display = 'none';
+            lightbox.style.display = 'none'; // Hide lightbox when 'X' is clicked
         });
 
+        // Hide lightbox if clicked outside the image/caption area
         lightbox.addEventListener('click', (e) => {
             if (e.target === lightbox) {
                 lightbox.style.display = 'none';
             }
         });
 
-        applyFilter(); // Initialize filter on page load
+        applyFilter(); // Initialize filter and show default gallery on page load
     </script>
 </body>
 </html>
