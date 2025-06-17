@@ -9,7 +9,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght=400;700&family=Georgia:400,700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="/css/gallery.css">
         <link rel="stylesheet" href="/css/trans.css">
-      <div id="google_translate_element"></div>
+      
+      <style>
+        @media (max-width: 768px) {
+            #google_translate_element {
+                display: none !important;
+            }
+        }
+    </style>
+    <div id="google_translate_element"></div>
+</head>
 </head>
 <script src="translate.js"></script>
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>

@@ -32,16 +32,3 @@ window.addEventListener('load', () => {
   }
 });
 
-// Your CSS remains the same
-/*
-#google_translate_element {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #fff;
-    padding: 6px 10px;
-    border-radius: 5px;
-    z-index: 1000;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-}
-*/
