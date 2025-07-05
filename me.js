@@ -77,3 +77,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'PrintScreen' || e.keyCode === 44) {
+    // Show black overlay
+    let blackOverlay = document.createElement('div');
+    blackOverlay.style.position = 'fixed';
+    blackOverlay.style.top = '0';
+    blackOverlay.style.left = '0';
+    blackOverlay.style.width = '100vw';
+    blackOverlay.style.height = '100vh';
+    blackOverlay.style.backgroundColor = 'black';
+    blackOverlay.style.zIndex = '9999999';
+    blackOverlay.style.pointerEvents = 'none';
+    document.body.appendChild(blackOverlay);
+
+    // Remove overlay after 1 second
+    setTimeout(() => {
+      document.body.removeChild(blackOverlay);
+    }, 1000);
+  }
+});
