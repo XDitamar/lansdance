@@ -1,176 +1,179 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const lightbox = document.getElementById('myLightbox');
+    // --- DOM Element References ---
+    const customNameInput = document.getElementById('customName');
+    const customCountInput = document.getElementById('customCount'); // This input takes the combined password
+    const loadCustomGalleryButton = document.getElementById('loadCustomGallery');
+    const customGalleryDiv = document.getElementById('customGallery');
+    const myLightbox = document.getElementById('myLightbox');
     const lightboxImg = document.getElementById('lightboxImg');
     const lightboxCaption = document.getElementById('lightboxCaption');
     const closeLightbox = document.querySelector('.close-lightbox');
-    const loadCustomGalleryButton = document.getElementById('loadCustomGallery');
-    const customNameInput = document.getElementById('customName');
-    const customCountInput = document.getElementById('customCount');
-    const galleryContainer = document.getElementById('customGallery');
 
-    // --- START: Anti-Copying/Screenshot Measures ---
+    // --- Authentication Data with File Counts ---
+    // Format: 'username': 'password:pngCount:mp4Count'
+    // IMPORTANT: This data is hardcoded for demonstration purposes ONLY.
+    // For a real application, implement server-side authentication for security.
+    const allowedGalleries = {
+        'ben': '12:16:0',       // User 'ben', password '12', 16 PNGs, 0 MP4s
+        'landscapes': 'securepass:12:0', // User 'landscapes', password 'securepass', 12 PNGs, 0 MP4s
+        'portraits': 'photo_secret:10:0', // User 'portraits', password 'photo_secret', 10 PNGs, 0 MP4s
+        'animals': 'wildlife_pix:7:2'   // User 'animals', password 'wildlife_pix', 7 PNGs, 2 MP4s
+    };
 
-    // 1. Disable right-click context menu to prevent "Save Image As..."
-    document.addEventListener('contextmenu', event => {
-        event.preventDefault();
-        console.log("Right-click disabled to protect content."); // For debugging
-    });
-
-    // 2. Prevent dragging of images to desktop
-    document.addEventListener('dragstart', event => {
-        if (event.target.tagName === 'IMG') {
-            event.preventDefault();
-            console.log("Image dragging disabled to protect content."); // For debugging
-        }
-    });
-
-    // 3. Obscure content on Print Screen key press (primarily for desktop users)
-    document.addEventListener('keydown', (e) => {
-        // e.key: 'PrintScreen' is standard for modern browsers
-        // e.keyCode: 44 is the legacy code for PrintScreen
-        // Check for other common screenshot key combinations if desired,
-        // but it becomes complex and OS-dependent very quickly.
-        if (e.key === 'PrintScreen' || e.keyCode === 44) {
-            console.log("PrintScreen key detected. Attempting to obscure content."); // For debugging
-
-            // Create a temporary black overlay element
-            let blackOverlay = document.createElement('div');
-            blackOverlay.style.position = 'fixed';
-            blackOverlay.style.top = '0';
-            blackOverlay.style.left = '0';
-            blackOverlay.style.width = '100vw'; // Full viewport width
-            blackOverlay.style.height = '100vh'; // Full viewport height
-            blackOverlay.style.backgroundColor = 'black'; // Black color
-            blackOverlay.style.zIndex = '9999999'; // High z-index to be on top of everything
-            blackOverlay.style.pointerEvents = 'none'; // Essential: allows clicks/hovers to pass through to underlying elements
-            document.body.appendChild(blackOverlay);
-
-            // Remove the overlay very quickly after a short delay.
-            // This short delay is crucial: it's intended to flash the overlay *during* the screenshot capture
-            // but remove it so it's barely noticeable to the user viewing the live page.
-            setTimeout(() => {
-                if (document.body.contains(blackOverlay)) {
-                    document.body.removeChild(blackOverlay);
-                }
-            }, 50); // 50 milliseconds - experiment with this value if needed
-        }
-    });
-
-    // --- END: Anti-Copying/Screenshot Measures ---
-
-
-    // --- Custom Gallery Loading Logic (Your existing functional code) ---
-
+    // --- Event Listener for Load Button (Authentication & Gallery Loading) ---
     loadCustomGalleryButton.addEventListener('click', async () => {
-        const name = customNameInput.value.trim();
-        const count = parseInt(customCountInput.value);
+        const folderName = customNameInput.value.trim().toLowerCase();
+        const enteredPassword = customCountInput.value.trim(); // User only enters the password part
 
-        galleryContainer.innerHTML = ''; // Clear previous gallery content
-        galleryContainer.style.display = 'none'; // Hide gallery while loading
+        // Reset gallery display
+        customGalleryDiv.innerHTML = '';
+        customGalleryDiv.style.display = 'none';
 
-        if (!name || isNaN(count) || count < 1) {
-            alert('Please enter a valid folder name and a number of photos (1 or more).');
-            return;
+        // 1. Authenticate User
+        if (allowedGalleries[folderName]) {
+            const storedCombinedData = allowedGalleries[folderName];
+            const parts = storedCombinedData.split(':');
+
+            if (parts.length === 3) {
+                const storedPassword = parts[0];
+                const pngCount = parseInt(parts[1], 10);
+                const mp4Count = parseInt(parts[2], 10);
+
+                if (enteredPassword === storedPassword) {
+                    alert(`Logged in as ${folderName}!`);
+                    console.log(`Authentication successful for folder: ${folderName}`);
+                    // Proceed to load gallery based on the counts from allowedGalleries
+                    await loadGalleryContent(folderName, pngCount, mp4Count);
+                } else {
+                    alert('Invalid password. Please try again.');
+                }
+            } else {
+                alert('Internal error: Gallery data malformed. Please contact support.');
+                console.error(`Malformed data for ${folderName}: ${storedCombinedData}`);
+            }
+        } else {
+            alert('Invalid name or password. Please try again.');
         }
+    });
 
-        let loadedImagesCount = 0;
-        const photoPromises = [];
-        const photoItems = []; // Array to store created photo item elements
+    // --- Function to Load Gallery Content (combining your image loading logic) ---
+    async function loadGalleryContent(folderName, pngCount, mp4Count) {
+        let loadedItems = 0;
+        const photoItems = []; // To hold all constructed photo/video items
 
-        // Create an array of Promises, each representing an image load attempt
-        for (let i = 1; i <= count; i++) {
-            const imgPath = `/pics/${name}/${i}.png`; // Assuming images are .png
-            photoPromises.push(new Promise((resolve) => {
-                const img = new Image(); // Use Image object to pre-load and check for errors
+        // Function to create a photo item and add to photoItems array
+        const createAndAddPhotoItem = (path, altText) => {
+            const photoItem = document.createElement('div');
+            photoItem.className = 'photo-item';
+
+            const realImg = document.createElement('img');
+            realImg.src = path;
+            realImg.alt = altText;
+            realImg.loading = 'lazy'; // Add lazy loading
+
+            const overlay = document.createElement('div');
+            overlay.className = 'overlay';
+            overlay.innerHTML = '<span>View Photo</span>';
+
+            photoItem.appendChild(realImg);
+            photoItem.appendChild(overlay);
+
+            photoItem.addEventListener('click', () => {
+                myLightbox.style.display = 'flex'; // Use flex for centering
+                lightboxImg.src = realImg.src;
+                lightboxCaption.innerHTML = realImg.alt;
+            });
+            photoItems.push(photoItem);
+        };
+
+        // --- Load PNG Images ---
+        for (let i = 1; i <= pngCount; i++) {
+            const imgPath = `/pics/${folderName}/${i}.png`;
+
+            // Use the Promise-based loading from your original code
+            await new Promise((resolve) => {
+                const img = new Image();
                 img.src = imgPath;
 
                 img.onload = () => {
-                    loadedImagesCount++;
-                    // Create the photo item and its elements
-                    const photoItem = document.createElement('div');
-                    photoItem.className = 'photo-item';
-
-                    const realImg = document.createElement('img');
-                    realImg.src = imgPath;
-                    realImg.alt = `${name} - photo ${i}`; // Alt text for accessibility and debugging
-
-                    const overlay = document.createElement('div');
-                    overlay.className = 'overlay';
-                    overlay.innerHTML = '<span>View Photo</span>';
-
-                    photoItem.appendChild(realImg);
-                    photoItem.appendChild(overlay);
-
-                    // Add click listener to open lightbox
-                    photoItem.addEventListener('click', () => {
-                        lightbox.style.display = 'flex'; // Use flex to center content
-                        lightboxImg.src = realImg.src;
-                        lightboxCaption.innerHTML = realImg.alt;
-                    });
-
-                    photoItems.push(photoItem); // Add to our list of successful photo items
-                    resolve(true); // Resolve the promise indicating success
+                    loadedItems++;
+                    createAndAddPhotoItem(imgPath, `${folderName} - photo ${i}`);
+                    resolve();
                 };
-
                 img.onerror = () => {
-                    console.warn(`Could not load image: ${imgPath}`);
-                    resolve(false); // Resolve the promise indicating failure (don't block other images)
+                    console.warn(`Could not load PNG: ${imgPath}`);
+                    resolve(); // Resolve even on error to continue loop
                 };
-            }));
+            });
         }
 
-        // Wait for all image loading attempts to complete
-        await Promise.all(photoPromises);
+        // --- Load MP4 Videos ---
+        // Note: Your lightbox is designed for images. For MP4s, this will add a placeholder.
+        // To properly show videos, your lightbox HTML and JS would need to be enhanced.
+        for (let i = 1; i <= mp4Count; i++) {
+            const videoPath = `/pics/${folderName}/${i}.mp4`;
 
-        // Provide feedback based on loading results
-        if (loadedImagesCount === 0) {
-            alert(`No images found in the folder "${name}". Please check the folder name and ensure images are .png files.`);
-        } else if (loadedImagesCount < count) {
-            alert(`Only ${loadedImagesCount} out of ${count} images were found in the folder "${name}". Displaying available images.`);
-        }
-
-        // Display the gallery if any images were loaded
-        if (photoItems.length > 0) {
-            // Sort photoItems by their original numeric index to maintain order
-            photoItems.sort((a, b) => {
-                const aNum = parseInt(a.querySelector('img').alt.match(/photo (\d+)/)[1]);
-                const bNum = parseInt(b.querySelector('img').alt.match(/photo (\d+)/)[1]);
-                return aNum - bNum;
+            // For videos, we're not pre-loading like images, just adding a placeholder/link
+            // as the lightbox doesn't support video directly.
+            const videoItem = document.createElement('div');
+            videoItem.className = 'photo-item video-item'; // Add 'video-item' for specific styling if needed
+            videoItem.innerHTML = `
+                <video src="${videoPath}" controls preload="metadata" loading="lazy" 
+                       poster="/pics/video_placeholder.png" alt="Video ${i} from ${folderName}"></video>
+                <div class="overlay"><span>Watch Video</span></div>
+            `;
+            // If you want a click on the item to open the video in a new tab:
+            videoItem.addEventListener('click', () => {
+                window.open(videoPath, '_blank');
             });
 
-            photoItems.forEach(item => galleryContainer.appendChild(item));
-            galleryContainer.style.display = 'grid'; // Show the gallery as a grid
+            photoItems.push(videoItem);
+            loadedItems++; // Count it as a loaded item
         }
-    });
 
-    // --- Lightbox Close Handlers (Your existing functional code) ---
 
-    // Close lightbox when 'x' is clicked
-    closeLightbox.addEventListener('click', () => {
-        lightbox.style.display = 'none';
-    });
-
-    // Close lightbox when clicking outside the image (on the dark background)
-    lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox) {
-            lightbox.style.display = 'none';
+        // --- Display Gallery ---
+        if (photoItems.length > 0) { // Check if any items were added (PNGs or MP4s)
+            photoItems.forEach(item => customGalleryDiv.appendChild(item));
+            customGalleryDiv.style.display = 'grid'; // Show the gallery
+        } else {
+            customGalleryDiv.innerHTML = '<p>No photos or videos found for this user, or paths are incorrect.</p>';
+            customGalleryDiv.style.display = 'block'; // Show message
         }
-    });
 
-    // Close lightbox with Escape key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && lightbox.style.display === 'flex') {
-            lightbox.style.display = 'none';
+        if (loadedItems < (pngCount + mp4Count)) {
+             alert(`Warning: Only ${loadedItems} out of ${pngCount + mp4Count} expected items were found for "${folderName}". Please ensure all files exist.`);
         }
-    });
-
-    // Google Translate initialization (Keep this if your HTML explicitly calls googleTranslateElementInit)
-    function googleTranslateElementInit() {
-        new google.translate.TranslateElement({
-            pageLanguage: 'en',
-            layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-        }, 'google_translate_element');
     }
-    // Ensure this function is available globally if Google's script needs to call it.
-    // window.googleTranslateElementInit = googleTranslateElementInit;
+
+
+    // --- Lightbox Functionality (from your original code) ---
+    closeLightbox.addEventListener('click', () => {
+        myLightbox.style.display = 'none';
+        // Stop any playing video in the lightbox if you extend it for videos
+        if (lightboxImg.tagName === 'VIDEO') {
+            lightboxImg.pause();
+        }
+    });
+
+    myLightbox.addEventListener('click', (e) => {
+        if (e.target === myLightbox) {
+            myLightbox.style.display = 'none';
+            // Stop any playing video in the lightbox
+            if (lightboxImg.tagName === 'VIDEO') {
+                lightboxImg.pause();
+            }
+        }
+    });
+
+    // Optional: Close lightbox with Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && myLightbox.style.display === 'flex') { // Check for 'flex'
+            myLightbox.style.display = 'none';
+            // Stop any playing video in the lightbox
+            if (lightboxImg.tagName === 'VIDEO') {
+                lightboxImg.pause();
+            }
+        }
+    });
 });
