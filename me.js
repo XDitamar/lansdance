@@ -14,10 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // IMPORTANT: This data is hardcoded for demonstration purposes ONLY.
     // For a real application, implement server-side authentication for security.
     const allowedGalleries = {
-        'ben': '12:16:0',       // User 'ben', password '12', 16 PNGs, 0 MP4s
-        'landscapes': 'securepass:12:0', // User 'landscapes', password 'securepass', 12 PNGs, 0 MP4s
-        'portraits': 'photo_secret:10:0', // User 'portraits', password 'photo_secret', 10 PNGs, 0 MP4s
-        'animals': 'wildlife_pix:7:2'   // User 'animals', password 'wildlife_pix', 7 PNGs, 2 MP4s
+        'ben': '12:16:1',       // User 'ben', password '12', 16 PNGs, 0 MP4s
+        
     };
 
     // --- Event Listener for Load Button (Authentication & Gallery Loading) ---
