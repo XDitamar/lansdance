@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gallery - Lens Dance: Horse Photography</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/gallery.css"/>
+  <link rel="stylesheet" href="/css/trans.css"/>
+  <link rel="stylesheet" href="/css/me.css"/>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Georgia:400,700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="/css/contact.css">
+        <link rel="stylesheet" href="/css/trans.css">
+
+    <div id="google_translate_element"></div>
+</head>
+<script src="translate.js"></script>
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<body>
+
+<header>
+  <div class="logo-container">
+    <img src="/pics/logo.png" alt="Lens Dance Logo" class="logo" />
+    <a href="index.html" class="site-title">Lens Dance</a>
+  </div>
+  <nav>
+      <a href="index.html">Home</a>
+      <a href="gallery.html" class="active">Gallery</a>
+      <a href="me.html">My pics</a>
+      <a href="contact.html">Contact Us</a>
+  </nav>
+</header>
+
+<!-- 🔽 Name + Number Input Form -->
+<div class="custom-photo-loader">
+  <h3>Load Custom Gallery</h3>
+  <input type="text" id="customName" placeholder="Enter name (folder name)" />
+  <input type="number" id="customCount" placeholder="Number of photos" min="1" />
+  <button id="loadCustomGallery">Load</button>
+</div>
+
+<!-- 🔽 Dynamic Gallery Container -->
+<div id="customGallery" class="photo-gallery-grid" style="display: none;"></div>
+
+<!-- 🔽 Lightbox -->
+<div id="myLightbox">
+  <span class="close-lightbox">&times;</span>
+  <img class="lightbox-content" id="lightboxImg" />
+  <div id="lightboxCaption" class="lightbox-caption"></div>
+</div>
+
+<footer>
+  <p>&copy; 2025 Lens Dance. All rights reserved.</p>
+  <div class="social-links">
+    <a href="https://www.tiktok.com/@lens.dance" target="_blank" aria-label="Tiktok">
+      <img src="/pics/tiktok.png" alt="Tiktok" />
+    </a>
+    <a href="https://www.instagram.com/lens.dance" target="_blank" aria-label="Instagram">
+      <img src="/pics/instagram.png" alt="Instagram" />
+    </a>
+  </div>
+</footer>
+
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+      pageLanguage: 'en',
+      includedLanguages: 'he',
+      layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+    }, 'google_translate_element');
+  }
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<script>
+  const lightbox = document.getElementById('myLightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxCaption = document.getElementById('lightboxCaption');
+  const closeLightbox = document.querySelector('.close-lightbox');
+
+  document.getElementById('loadCustomGallery').addEventListener('click', async () => {
+    const name = document.getElementById('customName').value.trim();
+    const count = parseInt(document.getElementById('customCount').value);
+    const galleryContainer = document.getElementById('customGallery');
+
+    galleryContainer.innerHTML = '';
+    galleryContainer.style.display = 'none';
+
+    if (!name || isNaN(count) || count < 1) {
+      alert('Please enter a valid folder name and photo count.');
+      return;
+    }
+
+    let loadedImages = 0;
+    const photoItems = [];
+
+    for (let i = 1; i <= count; i++) {
+      const imgPath = `/pics/${name}/${i}.png`;
+
+      await new Promise((resolve) => {
+        const img = new Image();
+        img.src = imgPath;
+
+        img.onload = () => {
+          loadedImages++;
+
+          const photoItem = document.createElement('div');
+          photoItem.className = 'photo-item';
+
+          const realImg = document.createElement('img');
+          realImg.src = imgPath;
+          realImg.alt = `${name} - photo ${i}`;
+
+          const overlay = document.createElement('div');
+          overlay.className = 'overlay';
+          overlay.innerHTML = '<span>View Photo</span>';
+
+          photoItem.appendChild(realImg);
+          photoItem.appendChild(overlay);
+
+          photoItem.addEventListener('click', () => {
+            lightbox.style.display = 'flex';
+            lightboxImg.src = realImg.src;
+            lightboxCaption.innerHTML = realImg.alt;
+          });
+
+          photoItems.push(photoItem);
+          resolve();
+        };
+
+        img.onerror = () => resolve();
+      });
+    }
+
+    if (loadedImages < count) {
+      alert(`Only ${loadedImages} out of ${count} images exist in the folder "${name}". Please enter the correct number.`);
+    } else {
+      photoItems.forEach(item => galleryContainer.appendChild(item));
+      galleryContainer.style.display = 'grid';
+    }
+  });
+
+  closeLightbox.addEventListener('click', () => {
+    lightbox.style.display = 'none';
+  });
+
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) {
+      lightbox.style.display = 'none';
+    }
+  });
+</script>
+
+</body>
+</html>
