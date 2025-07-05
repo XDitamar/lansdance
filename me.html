@@ -1,61 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up for the next competition - Lens Dance: Horse Photography</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Georgia:400,700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="/css/trans.css">
-        <link rel="stylesheet" href="/css/gallery.css"/>
-        <link rel="stylesheet" href="/css/me.css"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sign Up for the next competition - Lens Dance: Horse Photography</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Georgia:400,700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="/css/trans.css" />
+  <link rel="stylesheet" href="/css/gallery.css" />
+  <link rel="stylesheet" href="/css/me.css" />
 
+  <style>
+    /* Your CSS here - moved for completeness */
+    .custom-photo-loader {
+      text-align: center;
+      margin: 30px auto;
+      padding: 15px;
+      background-color: #f9f9f9;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 600px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
 
-    <div id="google_translate_element"></div>
+    .custom-photo-loader input {
+      margin: 8px;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    .custom-photo-loader button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 6px;
+      background-color: #333;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .photo-gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .photo-item {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .photo-item img,
+    .photo-item video {
+      width: 100%;
+      border-radius: 10px;
+      display: block;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+      border-radius: 10px;
+    }
+
+    .photo-item:hover .overlay {
+      opacity: 1;
+    }
+
+    #myLightbox {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.8);
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .lightbox-content {
+      max-width: 90vw;
+      max-height: 80vh;
+      border-radius: 10px;
+      cursor: auto;
+    }
+
+    .close-lightbox {
+      color: white;
+      font-size: 30px;
+      cursor: pointer;
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      z-index: 10000;
+      user-select: none;
+    }
+
+    .lightbox-caption {
+      color: white;
+      margin-top: 10px;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    /* Style for the download button */
+    .download-button {
+      background-color: #333; /* Blue color for download */
+      color: white;
+      padding: 10px 20px;
+      border-radius: 6px;
+      text-decoration: none; /* Remove underline */
+      margin-top: 15px; /* Space from the content/caption */
+      display: inline-block; /* Allows padding and margin */
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .download-button:hover {
+      background-color: #333;
+    }
+  </style>
 </head>
-<script src="translate.js"></script>
-<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <body>
-    <header>
-        <div class="logo-container">
-            <img src="/pics/logo.png" alt="Lens Dance Logo" class="logo">
-            <a href="index.html" class="site-title">Lens Dance</a>
-        </div>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="gallery.html">Gallery</a>
-            <a href="me.html" class="active">My pics</a>
-            <a href="contact.html" >Contact Us</a>
-        </nav>
-    </header>
+  <header>
+    <div class="logo-container">
+      <img src="/pics/logo.png" alt="Lens Dance Logo" class="logo" />
+      <a href="index.html" class="site-title">Lens Dance</a>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="me.html" class="active">My pics</a>
+      <a href="contact.html">Contact Us</a>
+    </nav>
+  </header>
 
-
-<div class="custom-photo-loader">
-  <h3>Load Custom Gallery</h3>
-  <input type="text" id="customName" placeholder="name " />
-  <input type="text" id="customCount" placeholder="password" min="1" />
-  <button id="loadCustomGallery">Load</button>
-</div>
-
-<div id="customGallery" class="photo-gallery-grid" style="display: none;"></div>
-
-<div id="myLightbox">
-  <span class="close-lightbox">&times;</span>
-  <img class="lightbox-content" id="lightboxImg" />
-  <div id="lightboxCaption" class="lightbox-caption"></div>
-</div>
-
-<footer>
-  <p>&copy; 2025 Lens Dance. AllS rights reserved.</p>
-  <div class="social-links">
-    <a href="https://www.tiktok.com/@lens.dance" target="_blank" aria-label="Tiktok">
-      <img src="/pics/tiktok.png" alt="Tiktok" />
-    </a>
-    <a href="https://www.instagram.com/lens.dance" target="_blank" aria-label="Instagram">
-      <img src="/pics/instagram.png" alt="Instagram" />
-    </a>
+  <div class="custom-photo-loader">
+    <h3>Load Custom Gallery</h3>
+    <input type="text" id="customName" placeholder="name" />
+    <input type="text" id="customCount" placeholder="password" min="1" />
+    <button id="loadCustomGallery">Load</button>
   </div>
-</footer>
-<script src="me.js" defer></script>
 
+  <div id="customGallery" class="photo-gallery-grid" style="display: none;"></div>
+
+  <div id="myLightbox">
+    <span class="close-lightbox">&times;</span>
+    <img class="lightbox-content" id="lightboxImg" style="display:none" />
+    <video id="lightboxVideo" class="lightbox-content" controls style="display:none"></video>
+    <div id="lightboxCaption" class="lightbox-caption"></div>
+    <a id="downloadMedia" class="download-button" href="#" download style="display:none;">Download</a>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Lens Dance. All rights reserved.</p>
+    <div class="social-links">
+      <a href="https://www.tiktok.com/@lens.dance" target="_blank" aria-label="Tiktok">
+        <img src="/pics/tiktok.png" alt="Tiktok" />
+      </a>
+      <a href="https://www.instagram.com/lens.dance" target="_blank" aria-label="Instagram">
+        <img src="/pics/instagram.png" alt="Instagram" />
+      </a>
+    </div>
+  </footer>
+
+  <script src="me.js" defer></script>
 </body>
 </html>
